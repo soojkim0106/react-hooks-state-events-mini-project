@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function NewTaskForm({ categories, onFormSubmit }) {
   const [formData, setFormData] = useState({
     text: "",
     category: "",
+    id: uuidv4(),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.text || !formData.category) {
+      alert("Please fill in all the inputs");
+      return;
+    }
     onFormSubmit(formData);
     setFormData({ text: "", category: "" });
   };
@@ -15,6 +22,7 @@ function NewTaskForm({ categories, onFormSubmit }) {
   const handleOnChange = ({ target: { name, value } }) => {
     setFormData({ ...formData, [name]: value });
   };
+  
 
   return (
     <form className="new-task-form" onSubmit={handleSubmit}>

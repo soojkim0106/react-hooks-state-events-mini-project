@@ -40,11 +40,7 @@ function App() {
         selectedCategory={selectedCategory}
       />
       <NewTaskForm categories={CATEGORIES} onFormSubmit={handleOnSubmit} />
-      <TaskList
-        filteredTasks={filteredTasks}
-        handleDelete={handleDelete}
-        setTasks={setTasks}
-      />
+      <TaskList filteredTasks={filteredTasks} handleDelete={handleDelete} />
     </div>
   );
 }
