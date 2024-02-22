@@ -7,7 +7,11 @@ import { CATEGORIES, TASKS } from "../data";
 
 function App() {
   const [tasks, setTasks] = useState(TASKS);
-  const [categories, setCategories] = useState(CATEGORIES);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const onSelectedCategory = (e) => {
+    setSelectedCategory(e.target.innerText);
+  };
 
   const handleDelete = (index) => {
     setTasks(tasks.filter((task, i) => i !== index));
@@ -17,17 +21,24 @@ function App() {
     setTasks([...tasks, formData]);
   };
 
+  const filteredTasks = tasks.filter(
+    (task) => task.category === selectedCategory || selectedCategory === "All"
+  );
+
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter
-        tasks={tasks}
-        setTasks={setTasks}
-        categories={categories}
-        setCategories={setCategories}
+        categories={CATEGORIES}
+        onSelectedCategory={onSelectedCategory}
+        selectedCategory={selectedCategory}
       />
-      <NewTaskForm categories={categories} onFormSubmit={handleOnSubmit} />
-      <TaskList tasks={tasks} handleDelete={handleDelete} setTasks={setTasks} />
+      <NewTaskForm categories={CATEGORIES} onFormSubmit={handleOnSubmit} />
+      <TaskList
+        filteredTasks={filteredTasks}
+        handleDelete={handleDelete}
+        setTasks={setTasks}
+      />
     </div>
   );
 }

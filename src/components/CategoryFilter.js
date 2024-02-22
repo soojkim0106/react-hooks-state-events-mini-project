@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 
-function CategoryFilter({ tasks, setTasks, categories }) {
+function CategoryFilter({ categories, onSelectedCategory }) {
   const [selected, setSelected] = useState("All");
 
-  const handleOnClick = (category) => {
-    setSelected(category);
-    setTasks(
-      category === "All"
-        ? tasks
-        : tasks.filter((task) => task.category === category)
-    );
+  const handleOnClick = (e) => {
+    onSelectedCategory(e);
   };
 
   const filterButton = categories.map((category) => (
     <button
       key={category}
       className={category === selected ? "selected" : ""}
-      onClick={() => handleOnClick(category)}
+      onClick={handleOnClick}
     >
       {category}
     </button>
