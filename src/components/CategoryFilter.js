@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-function CategoryFilter({ categories, onSelectedCategory }) {
+function CategoryFilter({ categories, onSelectedCategory, selectedCategory }) {
   const [selected, setSelected] = useState("All");
 
   const handleOnClick = (e) => {
     onSelectedCategory(e);
+    setSelected(e.target.innerText);
   };
 
   const filterButton = categories.map((category) => (
