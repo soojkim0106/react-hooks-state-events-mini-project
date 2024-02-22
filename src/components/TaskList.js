@@ -1,14 +1,13 @@
 import React from "react";
 import Task from "./Task";
-import { v4 as uuidv4 } from "uuid";
 
 function TaskList({ filteredTasks, handleDelete }) {
-  const allTasks = filteredTasks?.map((task, key) => (
+  const allTasks = filteredTasks?.map((task) => (
     <Task
-      key={uuidv4()}
+      key={task.id}
       category={task.category}
       text={task.text}
-      deleteTask={() => handleDelete(key)}
+      deleteTask={() => handleDelete(task.id)}
     />
   ));
 
