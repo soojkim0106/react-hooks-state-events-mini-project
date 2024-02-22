@@ -13,8 +13,8 @@ function App() {
     setSelectedCategory(e.target.innerText);
   };
 
-  const handleDelete = (index) => {
-    setTasks(tasks.filter((task, i) => i !== index));
+  const handleDelete = (key) => {
+    setTasks(tasks.filter((task, i) => i !== key));
   };
 
   const handleOnSubmit = (formData) => {

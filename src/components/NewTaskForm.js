@@ -12,8 +12,7 @@ function NewTaskForm({ categories, onFormSubmit }) {
     setFormData({ text: "", category: "" });
   };
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
+  const handleOnChange = ({ target: { name, value } }) => {
     setFormData({ ...formData, [name]: value });
   };
 
